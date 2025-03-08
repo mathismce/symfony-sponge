@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des éponges</title>
+</head>
+<body>
+    <h1>Liste des éponges</h1>
+
+    <ul>
+        {% for sponge in sponges %}
+            <li>
+                <strong>{{ sponge.name }}</strong><br>
+                Type: {{ sponge.type }}<br>
+                Size: {{ sponge.size }}<br>
+                <img src="{{ asset('images/' ~ sponge.img) }}" alt="{{ sponge.name }}" width="100">
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -14,7 +14,7 @@ services:
       - database
 
   database:
-    image: mysql:8.0  # ou postgres:16 selon tes préférences
+    image: mysql:8.0  # Remplace par `postgres:16` si tu utilises PostgreSQL
     container_name: symfony_db
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -25,6 +25,19 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: symfony_phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"  # On change le port externe
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - database
+
 
 volumes:
   db_data:
